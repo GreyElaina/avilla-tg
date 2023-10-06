@@ -167,9 +167,7 @@ class TwilightParser(argparse.ArgumentParser):
         else:
             return False
         action_init_sig = inspect.signature(action_cls.__init__)
-        if "type" not in action_init_sig.parameters:
-            return False
-        return True
+        return "type" in action_init_sig.parameters
 
 
 class TwilightHelpManager:

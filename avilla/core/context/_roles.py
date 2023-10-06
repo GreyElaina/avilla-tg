@@ -17,9 +17,6 @@ from graia.amnesia.message import Element, MessageChain, Text
 
 from ._selector import ContextSelector
 
-if TYPE_CHECKING:
-    pass
-
 R = TypeVar("R", covariant=True)
 P = ParamSpec("P")
 _MetadataT = TypeVar("_MetadataT", bound=Metadata)

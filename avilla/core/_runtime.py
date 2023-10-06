@@ -17,24 +17,19 @@ cx_context: Ctx[Context] = Ctx("context")
 
 
 def get_current_avilla() -> Avilla:
-    avilla = cx_avilla.get(None)
-    if avilla:
+    if avilla := cx_avilla.get(None):
         return avilla
-    protocol = cx_protocol.get(None)
-    if protocol:
+    if protocol := cx_protocol.get(None):
         return protocol.avilla
-    context = cx_context.get(None)
-    if context:
+    if context := cx_context.get(None):
         return context.protocol.avilla
     raise RuntimeError("no any current avilla")
 
 
 def get_current_protocol():
-    protocol = cx_protocol.get(None)
-    if protocol:
+    if protocol := cx_protocol.get(None):
         return protocol
-    context = cx_context.get(None)
-    if context:
+    if context := cx_context.get(None):
         return context.protocol
     raise RuntimeError("no any current protocol")
 

@@ -235,8 +235,6 @@ class MatchNode(Generic[T_MatchEntry]):
                     self.next[field] = new_node
 
     def _inspect(self, fwd=""):
-        if not self.next:
-            pass
         for k, node in self.next.items():
             node._inspect(f"{fwd}{'<PARAM>' if k is Sentinel else k} ")
 
@@ -251,9 +249,7 @@ raw.register(MessageChain)
 def convert_empty(obj: T) -> MaybeFlag[T]:
     if obj is inspect.Parameter.empty:
         return Sentinel
-    if isinstance(obj, Decorator):
-        return Sentinel
-    return obj
+    return Sentinel if isinstance(obj, Decorator) else obj
 
 
 class ContextVarDispatcher(BaseDispatcher):

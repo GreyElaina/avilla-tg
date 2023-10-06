@@ -14,8 +14,7 @@ GLOBAL_GALLERY = {}  # layout: {namespace: {identify: {...}}}, cover-mode.
 
 def ref(namespace: str, identify: str | None = None) -> dict[Any, Any]:
     ns = GLOBAL_GALLERY.setdefault(namespace, {})
-    scope = ns.setdefault(identify or "_", {})
-    return scope
+    return ns.setdefault(identify or "_", {})
 
 
 def merge(*artifacts: dict[Any, Any]):

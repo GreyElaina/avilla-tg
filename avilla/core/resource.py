@@ -41,4 +41,4 @@ class RawResource(Resource[T]):
 
     @property
     def selector(self):
-        return Selector().land("avilla-core").raw_data(str(id(self)))
+        return Selector().land("avilla-core").raw_data(id(self))

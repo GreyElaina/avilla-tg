@@ -414,9 +414,7 @@ class PokeNotifyEvent(NotifyEvent):
 
     @overrides(NotifyEvent)
     def get_session_id(self) -> str:
-        if not self.group_id:
-            return str(self.user_id)
-        return super().get_session_id()
+        return str(self.user_id) if not self.group_id else super().get_session_id()
 
 
 class LuckyKingNotifyEvent(NotifyEvent):
