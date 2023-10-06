@@ -28,9 +28,6 @@ from ._roles import (
 )
 from ._selector import ContextSelector
 
-if TYPE_CHECKING:
-    pass
-
 P = ParamSpec("P")
 R = TypeVar("R", covariant=True)
 _T = TypeVar("_T")

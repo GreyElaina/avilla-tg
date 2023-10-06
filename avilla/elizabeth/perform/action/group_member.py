@@ -121,18 +121,18 @@ class ElizabethGroupMemberActionPerform((m := AccountCollector["ElizabethProtoco
             raise PermissionError(
                 permission_error_message(f"mute@{target.path}", self_permission.name, ["group_owner", "group_admin"])
             )
-        time = max(0, min(int(duration.total_seconds()), 2592000))
-        if not time:
+        if time := max(0, min(int(duration.total_seconds()), 2592000)):
+            await self.account.connection.call(
+                "update",
+                "mute",
+                {
+                    "target": int(target.pattern["group"]),
+                    "memberId": int(target.pattern["member"]),
+                    "time": time,
+                },
+            )
+        else:
             return
-        await self.account.connection.call(
-            "update",
-            "mute",
-            {
-                "target": int(target.pattern["group"]),
-                "memberId": int(target.pattern["member"]),
-                "time": time,
-            },
-        )
 
     @m.entity(MuteCapability.unmute, "land.group.member")
     async def group_member_unmute(self, target: Selector):

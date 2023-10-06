@@ -35,10 +35,7 @@ class Endpoint(Generic[T]):
         ...
 
     def __get__(self, instance: BasePerform | None, owner: type):
-        if instance is None:
-            return self
-
-        return self.evaluate(instance)
+        return self if instance is None else self.evaluate(instance)
 
     def evaluate(self, instance: BasePerform) -> T:
         ...

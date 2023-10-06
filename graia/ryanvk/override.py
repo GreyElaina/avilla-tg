@@ -68,10 +68,7 @@ class OverridePerformEntity(Generic[P, R]):
         ...
 
     def __get__(self, instance: Any, owner: type):
-        if instance is None:
-            return self
-
-        return OverridePerformAgent(self, instance)
+        return self if instance is None else OverridePerformAgent(self, instance)
 
 
 class OverridePerformAgent(Generic[P, R]):

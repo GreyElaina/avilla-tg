@@ -61,7 +61,7 @@ class TestPerform((m := ContextCollector())._):
         *,
         reply: Selector | None = None,
     ) -> Selector:
-        return await self.s2.super(target, message + "2cefarfr444", reply=reply)
+        return await self.s2.super(target, f"{message}2cefarfr444", reply=reply)
 
 
 class TestPerform1((n := ContextCollector())._):
@@ -73,7 +73,7 @@ class TestPerform1((n := ContextCollector())._):
         *,
         reply: Selector | None = None,
     ) -> Selector:
-        return await self.s2.super(target, message + "2cefarfr444", reply=reply)
+        return await self.s2.super(target, f"{message}2cefarfr444", reply=reply)
 
 
 @broadcast.receiver(MessageReceived)
